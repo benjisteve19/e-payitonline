@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="css/loading.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .body {
+            padding: 0px;
+        }
+
+        .center {
+            justify-content: center;
+            /* margin-right:50%; */
+            /* margin-bottom: 50%; */
+            margin-top: 20%;
+            margin-left: 40%;
+            /* top:50%; */
+            /* left:50%; */
+        }
+
+        @media (max-width: 575.98px) {
+            .center {
+                margin-left: 15%;
+            }
+        }
+
+        /* Small devices (landscape phones, 576px and up) */
+
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .center {
+                margin-left: 15%;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .center {
+                margin-left: 21%;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        window.history.forward();
+
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="center">
+        <p class="info">Processing transaction.....Do not refresh or reload</p>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script>
+        setTimeout(() => {
+            window.location.assign("error.html")
+        }, 4000)
+    </script>
+
+</body>
+
+</html>

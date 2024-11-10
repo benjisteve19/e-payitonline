@@ -1,0 +1,144 @@
+html,
+body {
+    height: auto;
+}
+
+header,
+main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+section#dma-welcome,
+section#dma-skip-form {
+    width: 100%;
+    padding: 3rem 1rem;
+}
+
+section#dma-acct-payment input[type="text"]:nth-of-type(2) {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+section#dma-acct-payment input[type="button"] {
+    width: 13rem;
+}
+
+section#dma-acct-payment input[type="submit"] {
+    width: 13rem;
+}
+
+section#dma-bill-details {
+    gap: 1.50rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+section#dma-bill-more {
+    grid-row: span 1;
+    grid-column: span 2;
+}
+
+@media only screen and (max-width: 767px) {
+    body,
+    html {
+        height: auto;
+    }
+    nav {
+        /*display: none;*/
+    }
+    section#dma-view-bill {
+        margin: 2rem 0 0 0;
+        display: block;
+        text-align: center;
+    }
+    label {
+        display: block;
+        text-align: center;
+    }
+    section#dma-view-bill input[type="text"] {
+        max-width: 22vw;
+    }
+    input#LoginCtrl_txtVarColumn01 {
+        margin-bottom: 1rem;
+        max-width: 40vw !important;
+    }
+    section#dma-view-bill input[type="button"] {
+        width: 10rem;
+        margin: 1rem auto 0 auto;
+    }
+    section#dma-view-bill-1 input[type="button"] {
+        width: 10rem;
+        margin: 1rem auto 0 auto;
+    }
+    section#dma-skip-form input[type="button"] {
+        margin-top: 1rem;
+    }
+    section#dma-view-bill input[type="submit"] {
+        width: 10rem;
+        margin: 1rem auto 0 auto;
+    }
+    section#dma-view-bill-1 {
+        margin: 2rem 0 0 0;
+        display: block;
+        text-align: center;
+    }
+    section#dma-view-bill-1 input[type="text"] {
+        max-width: 22vw;
+    }
+    section#dma-view-bill-1 input[type="submit"] {
+        width: 10rem;
+        margin: 1rem auto 0 auto;
+    }
+    section#dma-skip-form input[type="submit"] {
+        margin-top: 1rem;
+    }
+    div.form-group {
+        margin: 2rem 0 0 0;
+        display: block;
+        text-align: center;
+    }
+    section#dma-bill-header {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem 0;
+    }
+    section#dma-bill-header img {
+        margin-bottom: 1rem;
+    }
+    section#dma-bill-details {
+        display: flex;
+        flex-direction: column;
+    }
+    section#dma-bill-details>section {
+        padding: 1rem;
+    }
+    footer {
+        display: block;
+        height: auto;
+        min-height: 0;
+        padding: 3rem 0;
+    }
+    footer img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    #dma_footer-nav {
+        display: block;
+        width: 100%;
+    }
+    #dma_footer-nav ul {
+        display: flex;
+        list-style-type: none;
+        justify-content: center;
+        column-gap: 3rem;
+        font-size: 1.10rem;
+        margin: 0 0 3rem 0;
+    }
+    #dma_footer-nav ul li a {
+        color: #FFF;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+}

